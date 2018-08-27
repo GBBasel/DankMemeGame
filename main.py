@@ -1,3 +1,5 @@
+import sys
+sys.path.append('H:\Desktop\DankMemeGame')
 from gamegrid import *
 
 class Dino(Actor):
@@ -35,11 +37,16 @@ class Gegner(Actor):
 
     def act(self):
         self.move()
+        self.destroy()
     
     def move(self):
          x = self.getX()
          x -= self.speed
          self.setX(x)
+         
+    def destroy(self):
+        if self.getX() < -100:
+            del self
 
 WIDTH = 800
 HEIGHT = 600
@@ -48,11 +55,17 @@ GROUND = HEIGHT // 2
 
 
 dino = Dino()
-gegner = Gegner()
 makeGameGrid(WIDTH, HEIGHT, 1, None, "sprites/lane.gif", False, keyPressed=dino.onKeyRepeated)
 setSimulationPeriod(50)
 addActor(dino, Location(GROUND, GROUND), 90)
-addActor(gegner, Location(WIDTH +100, GROUND), 90)
 show()
 doRun()
+
+while not isDisposed():
+    addActor(Gegner(), Location(WIDTH +100, GROUND), 90)
+    delay(1000)
+    
+    
+    
+    
 
