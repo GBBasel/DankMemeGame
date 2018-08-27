@@ -62,7 +62,12 @@ class Gegner(Actor):
 class Kaktus(Gegner):
     def __init__(self, path='sprites/frog.gif'):
         Gegner.__init__(self, path)
-        self.speed = 10
+        self.speed = 20
+        
+class Vogel(Gegner):
+    def __init__(self, path='sprites/frog.gif'):
+        Gegner.__init__(self, path)
+        self.speed = 30
     
 
 WIDTH = 800
@@ -81,13 +86,17 @@ gegner = 0
 
 while not isDisposed():
     if gegner > 100 and 0.005 > random.random():
-        kaktus = Kaktus()
-        addActor(kaktus, Location(WIDTH +100, GROUND), 90)
-        dino.addCollisionActor(kaktus)
+        if 0.5 > random.random():
+            gegner = Kaktus()
+            addActor(gegner, Location(WIDTH +100, GROUND), 90)
+        else:
+            gegner = Vogel()
+            addActor(gegner, Location(WIDTH +100, random.randint(50, GROUND-50)), 90)
+        dino.addCollisionActor(gegner)
         gegner = 0
     if 0.005 > random.random():
-        addActor(Gegner(), Location(WIDTH +100, random.randint(0, GROUND-50)), 90)
-    
+        addActor(Gegner(), Location(WIDTH +100, random.randint(50, GROUND-50)), 90)
+
     gegner += 1
     delay(10)
     
