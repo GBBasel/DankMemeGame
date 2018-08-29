@@ -1,6 +1,7 @@
 import sys
 sys.path.append('H:\Desktop\DankMemeGame')
 from gamegrid import *
+from soundsystem import *
 import random
 
 class Dino(Actor):
@@ -102,5 +103,5 @@ while not isDisposed():
     
     
     
-    
+openMonoPlayer('Wii_music.mp3')        
 
