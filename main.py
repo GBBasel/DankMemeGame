@@ -1,6 +1,7 @@
 import sys
 sys.path.append('H:\Desktop\DankMemeGame')
 from gamegrid import *
+from soundsystem import *
 import random
 import cmath
 import math
@@ -148,5 +149,5 @@ while not isDisposed():
     
     
     
-    
+openMonoPlayer('Wii_music.mp3')        
 
