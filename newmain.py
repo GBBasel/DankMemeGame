@@ -121,12 +121,12 @@ class Gegner(Actor):
             del self
             
 class Kaktus(Gegner):
-    def __init__(self, path=PATH_TO_FILE + 'bilder/obiwandank.png'):
+    def __init__(self, path=PATH_TO_FILE + 'bilder\\obiwandank100.png'):
         Gegner.__init__(self, path)
         self.speed = 20
         
 class Vogel(Gegner):
-    def __init__(self, path=PATH_TO_FILE + 'bilder/bird60.png'):
+    def __init__(self, path=PATH_TO_FILE + 'bilder\\bird60.png'):
         Gegner.__init__(self, path)
         self.speed = random.randint(10, 20) # zufällige geschwindigkeit
         self.turn(random.uniform(-0.2, 0.2))
@@ -141,7 +141,7 @@ class Vogel(Gegner):
         
         
 class Boss(Gegner):
-    def __init__(self, path='bilder/boss200.png'):
+    def __init__(self, path=PATH_TO_FILE + 'bilder\\boss200.png'):
         Gegner.__init__(self, path)
         self.alive = 0  #variable für die bewegung
         self.aktive = False # True wenn er da ist
@@ -166,7 +166,7 @@ class Boss(Gegner):
         
        
 class Bullet(Gegner):
-    def __init__(self, path='bilder/bullet.png'):
+    def __init__(self, path='bilder\\bullet.png'):
         Gegner.__init__(self, path)
         self.speed = 20
         
