@@ -114,8 +114,29 @@ class Vogel(Gegner):
             self.turn(random.uniform(-0.5, 0.5))
         self.move()
         self.destroy()
+        
+        
+class Boss(Gegner):
+    def __init__(self, path='sprites/car1.gif'):
+        Gegner.__init__(self, path)
+        self.alive = 0   
     
-
+    def act(self):
+        self.alive += 0.1
+        print(math.sin(self.alive))
+        y = int(300 + math.sin(self.alive)*100)
+        self.setY(y)
+        if 0.05 > random.random():
+            bullet = Bullet()
+            addActor(bullet, Location(self.getX(), self.getY()), 90)
+            dino.addCollisionActor(bullet)
+       
+class Bullet(Gegner):
+    def __init__(self, path='sprites/frog.gif'):
+        Gegner.__init__(self, path)
+        self.speed = 20
+        
+        
 WIDTH = 800
 HEIGHT = 600
 GROUND = HEIGHT // 2
@@ -127,11 +148,17 @@ dino = Dino()
 makeGameGrid(WIDTH, HEIGHT, 1, None, PATH_TO_FILE + 'bilder/backgroundneu800.png', False, keyPressed=dino.onkeyPressed, keyReleased=dino.onKeyReleased)
 setSimulationPeriod(50)
 addActor(dino, Location(GROUND, GROUND), 90)
+
+boss = Boss()
+addActor(boss, Location(GROUND+350, GROUND), 90)
 show()
 doRun()
 
+
 gegnerLauf = 0
 gegners = []
+
+
 
 while not isDisposed():
     if gegnerLauf > 80 and 0.05 > random.random():
@@ -155,5 +182,11 @@ while not isDisposed():
 
     gegnerLauf += 1
     delay(10)
+<<<<<<< Updated upstream
         
 
+=======
+    
+    
+          
+>>>>>>> Stashed changes
