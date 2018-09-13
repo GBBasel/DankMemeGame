@@ -30,7 +30,7 @@ class Dino(Actor):
             y = self.getY()
             y -= self.speed
             self.speed += self.gravitation
-            # wenn man eine taste dr�ckt und der dino nicht f�llt, f�llt er langsamer
+            # wenn man eine taste drückt und der dino nicht fallt, fallt er langsamer
             if self.pressed and self.speed > 0:
                 self.speed += 2
 
@@ -52,10 +52,10 @@ class Dino(Actor):
         self.speed = 20
 
     def onkeyPressed(self, e):
-        # wird ausgef�ht wenn eine taste gedr�ckt wird
+        # wird ausgefüht wenn eine taste gedrückt wird
         # double jump
         if not self.doubleJump and self.inAir and not self.pressed:
-            self.speed += self.boost
+            self.speed = self.boost
             self.doubleJump = True
 
         self.inAir = True
@@ -116,7 +116,7 @@ class Gegner(Actor):
         self.setY(y)
 
     def destroy(self):
-        # l�scht objekt
+        # löscht objekt
         if self.getX() < -100:
             removeActor(self)
             del self
@@ -131,11 +131,11 @@ class Kaktus(Gegner):
 class Vogel(Gegner):
     def __init__(self, path=PATH_TO_FILE + 'bilder\\bird60.png'):
         Gegner.__init__(self, path)
-        self.speed = random.randint(10, 20)  # zuf�llige geschwindigkeit
+        self.speed = random.randint(10, 20)  # zufüllige geschwindigkeit
         self.turn(random.uniform(-0.2, 0.2))
 
     def act(self):
-        # �ndert zuf�llig seine richtung
+        # ändert zufüllig seine richtung
         if random.random() < 0.05:
             self.turn(random.uniform(-0.5, 0.5))
         self.move()
@@ -145,7 +145,7 @@ class Vogel(Gegner):
 class Boss(Gegner):
     def __init__(self, path=PATH_TO_FILE + 'bilder\\boss200.png'):
         Gegner.__init__(self, path)
-        self.alive = 0  # variable f�r die bewegung
+        self.alive = 0  # variable für die bewegung
         self.aktive = False  # True wenn er da ist
         self.onespawned = False  # spawned nur einmal pro game
         self.timeSpawned = None  # zeitpunkt des spawnens
